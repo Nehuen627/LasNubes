@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Las Nubes Cabañas | Barrio Las Victorias, Bariloche</title>
+    <meta name="description"
+        content="Dos cabañas de madera en Barrio Las Victorias, San Carlos de Bariloche: Arrayán y Araucaria. Quincho cubierto con parrilla, calefacción excelente y ropa de cama completa.">
+    <meta name="theme-color" content="#3E2723">
+
+    <script>document.documentElement.classList.add('js'); setTimeout(function () { document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); }); }, 1800);</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wood: { 900: '#3E2723', 700: '#5D4037', 500: '#8D6E63', 300: '#BCAAA4', 100: '#EFEBE9' },
+                        cream: '#FAF8F5',
+                        forest: { 900: '#1F3A2B', 700: '#2D5A3F', 600: '#3A6B4C', 100: '#E3EDE6' },
+                        ember: '#C8793A'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"DM Sans"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: #FAF8F5;
+            color: #3E2723;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ph {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #5D4037 0%, #3E2723 55%, #2D5A3F 140%);
+        }
+
+        .ph::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: cover;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' preserveAspectRatio='xMidYMax slice'%3E%3Ccircle cx='300' cy='85' r='30' fill='%23E8C9A0' fill-opacity='.4'/%3E%3Cpath d='M0 215 L70 135 L120 185 L195 95 L285 200 L340 150 L400 205 V300 H0Z' fill='%23000' fill-opacity='.16'/%3E%3Cpath d='M0 250 L60 190 L120 240 L210 165 L300 245 L360 205 L400 240 V300 H0Z' fill='%23000' fill-opacity='.26'/%3E%3Cg fill='%231F3A2B' fill-opacity='.75'%3E%3Cpath d='M10 300 L30 235 L50 300Z'/%3E%3Cpath d='M38 300 L62 220 L86 300Z'/%3E%3Cpath d='M300 300 L322 232 L344 300Z'/%3E%3Cpath d='M330 300 L358 215 L386 300Z'/%3E%3Cpath d='M365 300 L383 245 L400 300Z'/%3E%3Cpath d='M150 300 L168 250 L186 300Z'/%3E%3C/g%3E%3Crect x='0' y='290' width='400' height='10' fill='%231F3A2B' fill-opacity='.8'/%3E%3C/svg%3E");
+        }
+
+        .ph img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .6s ease;
+            z-index: 1;
+        }
+
+        .ph img.loaded {
+            opacity: 1;
+        }
+
+        .ph .ph-label {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .4rem;
+            color: rgba(250, 248, 245, .55);
+            font-size: .7rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ph .ph-label svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .js .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        .bar-fill {
+            width: var(--w);
+        }
+
+        .js .bar-fill {
+            width: 0;
+            transition: width 1.1s cubic-bezier(.2, .8, .2, 1) .2s;
+        }
+
+        .js .reveal.in .bar-fill {
+            width: var(--w);
+        }
+
+        .grain::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 3px 3px;
+            pointer-events: none;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, .5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .wa-pulse {
+            animation: pulseRing 2.4s infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+
+            .bar-fill {
+                transition: none !important;
+            }
+
+            .wa-pulse {
+                animation: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ========== NAVBAR ========== -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-cream/80 backdrop-blur-md border-b border-wood-900/10 shadow-sm">
+        <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-2 text-wood-900">
+                <i data-lucide="mountain-snow" class="w-6 h-6 text-ember"></i>
+                <span class="font-serif text-xl font-bold tracking-wide">Las Nubes</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-wood-900">
+                <a href="#cabanas" class="hover:text-ember transition">Cabañas</a>
+                <a href="#servicios" class="hover:text-ember transition">Servicios</a>
+                <a href="#ubicacion" class="hover:text-ember transition">Ubicación</a>
+                <a href="#opiniones" class="hover:text-ember transition">Opiniones</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="#"
+                    onclick="event.preventDefault(); alert('Versión de demostración: en la web oficial este botón abrirá un chat directo a su WhatsApp con el mensaje de consulta prearmado.');"
+                    class="hidden md:inline-flex items-center gap-2 bg-ember hover:bg-[#b46a30] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition shadow-md shadow-black/15">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Consultar
+                </a>
+                <button id="menuBtn" aria-label="Abrir menú" class="md:hidden text-wood-900 p-2 -mr-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-cream/95 backdrop-blur-md border-t border-wood-100 shadow-xl">
+            <div class="px-5 py-5 flex flex-col gap-4 text-wood-900 font-medium">
+                <a href="#cabanas" class="mobile-link py-1 hover:text-ember">Cabañas</a>
+                <a href="#servicios" class="mobile-link py-1 hover:text-ember">Servicios</a>
+                <a href="#ubicacion" class="mobile-link py-1 hover:text-ember">Ubicación</a>
+                <a href="#opiniones" class="mobile-link py-1 hover:text-ember">Opiniones</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section id="inicio" class="relative min-h-[100svh] flex items-end md:items-center ph grain">
+        <img data-img="hero" alt="Las Nubes Cabañas en Bariloche" fetchpriority="high">
+        <div class="ph-label"><i data-lucide="image"></i><span>Foto principal</span></div>
+        <div class="absolute inset-0 z-[3] bg-gradient-to-t from-black/40 via-transparent to-black/10"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-5 pb-16 pt-28 md:py-32 w-full">
+            <div class="max-w-2xl">
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-wood-900 leading-[1.15]">
+                    Dos cabañas de madera,<br class="hidden sm:block"> <span class="italic text-ember">bien
+                        calentitas</span>
+                </h1>
+                <p class="mt-5 text-base sm:text-lg text-wood-800 leading-relaxed max-w-xl font-medium">
+                    Arrayán y Araucaria: cabañas con vigas a la vista, living amplio, quincho cubierto con parrilla y
+                    cochera. Llegás, te acomodás y listo.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href="#"
+                        onclick="event.preventDefault(); alert('Versión de demostración: en la web oficial este botón abrirá un chat directo a su WhatsApp con el mensaje de consulta prearmado.');"
+                        class="inline-flex items-center justify-center gap-2 bg-ember hover:bg-[#b46a30] text-white font-semibold px-7 py-4 rounded-full transition shadow-lg shadow-black/20">
+                        <i data-lucide="calendar-check" class="w-5 h-5"></i> Consultar disponibilidad
+                    </a>
+                    <a href="#cabanas"
+                        class="inline-flex items-center justify-center gap-2 bg-wood-900/10 hover:bg-wood-900/20 backdrop-blur border border-wood-900/20 text-wood-900 font-semibold px-7 py-4 rounded-full transition">
+                        Conocer las cabañas <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FRANJA ========== -->
+    <section class="bg-wood-900 text-cream">
+        <div class="max-w-6xl mx-auto px-5 py-6 grid grid-cols-2 md:grid-cols-4 gap-5 text-sm">
+            <div class="flex items-center gap-3"><i data-lucide="flame"
+                    class="w-5 h-5 text-ember shrink-0"></i><span>Calefacción excelente</span></div>
+            <div class="flex items-center gap-3"><i data-lucide="beef"
+                    class="w-5 h-5 text-ember shrink-0"></i><span>Quincho cubierto con parrilla</span></div>
+            <div class="flex items-center gap-3"><i data-lucide="bed-double"
+                    class="w-5 h-5 text-ember shrink-0"></i><span>Ropa de cama y toallas</span></div>
+            <div class="flex items-center gap-3"><i data-lucide="car"
+                    class="w-5 h-5 text-ember shrink-0"></i><span>Cochera sin cargo</span></div>
+        </div>
+    </section>
+
+    <!-- ========== CABAÑAS ========== -->
+    <section id="cabanas" class="py-20 md:py-28">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="max-w-2xl reveal">
+                <p class="text-forest-700 text-sm font-semibold tracking-[.18em] uppercase mb-3">Las cabañas</p>
+                <h2 class="font-serif text-3xl md:text-5xl font-semibold text-wood-900 leading-tight">Arrayán y
+                    Araucaria</h2>
+                <p class="mt-4 text-wood-700 text-lg leading-relaxed">Dos cabañas, mismo cuidado. Muebles de madera,
+                    vigas a la vista y todo lo necesario para sentirte como en casa.</p>
+            </div>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2">
+                <!-- Araucaria -->
+                <article
+                    class="reveal bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(62,39,35,.08)] border border-wood-100">
+                    <div class="ph aspect-[4/3]">
+                        <img data-img="araucaria" alt="Cabaña Araucaria" loading="lazy">
+                        <div class="ph-label"><i data-lucide="image"></i><span>Foto Araucaria</span></div>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="font-serif text-3xl font-semibold text-wood-900">Araucaria</h3>
+                        <p class="text-sm text-forest-700 font-medium mt-1">Living muy amplio y sobremesas largas</p>
+                        <p class="mt-4 text-wood-700 leading-relaxed">Un living generoso para compartir, cocina equipada
+                            y el quincho cubierto a pasos, ideal para el asado de la noche aunque el clima no acompañe.
+                        </p>
+                        <ul class="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-wood-700">
+                            <li class="flex items-center gap-2"><i data-lucide="bed-double"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> 2 dormitorios</li>
+                            <li class="flex items-center gap-2"><i data-lucide="sofa"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Living amplio</li>
+                            <li class="flex items-center gap-2"><i data-lucide="cooking-pot"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Cocina equipada</li>
+                            <li class="flex items-center gap-2"><i data-lucide="tv"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> TV pantalla plana</li>
+                            <li class="flex items-center gap-2"><i data-lucide="flame"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Calefacción</li>
+                            <li class="flex items-center gap-2"><i data-lucide="car"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Cochera</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Arrayán -->
+                <article
+                    class="reveal bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(62,39,35,.08)] border border-wood-100">
+                    <div class="ph aspect-[4/3]">
+                        <img data-img="arrayan" alt="Cabaña Arrayán" loading="lazy">
+                        <div class="ph-label"><i data-lucide="image"></i><span>Foto Arrayán</span></div>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="font-serif text-3xl font-semibold text-wood-900">Arrayán</h3>
+                        <p class="text-sm text-forest-700 font-medium mt-1">Cómoda, cálida y bien equipada</p>
+                        <p class="mt-4 text-wood-700 leading-relaxed">Camas súper cómodas, ropa de cama y toallas
+                            completas, y una cocina con todos los enseres para que no te falte nada durante la estadía.
+                        </p>
+                        <ul class="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-wood-700">
+                            <li class="flex items-center gap-2"><i data-lucide="bed-double"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> 2 dormitorios</li>
+                            <li class="flex items-center gap-2"><i data-lucide="sofa"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Living</li>
+                            <li class="flex items-center gap-2"><i data-lucide="cooking-pot"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Cocina equipada</li>
+                            <li class="flex items-center gap-2"><i data-lucide="tv"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> TV pantalla plana</li>
+                            <li class="flex items-center gap-2"><i data-lucide="flame"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Calefacción</li>
+                            <li class="flex items-center gap-2"><i data-lucide="car"
+                                    class="w-4 h-4 text-forest-600 shrink-0"></i> Cochera</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICIOS ========== -->
+    <section id="servicios" class="py-20 md:py-28 bg-forest-100/60">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="text-center max-w-2xl mx-auto reveal">
+                <p class="text-forest-700 text-sm font-semibold tracking-[.18em] uppercase mb-3">Servicios</p>
+                <h2 class="font-serif text-3xl md:text-5xl font-semibold text-wood-900 leading-tight">Llegás y ya está
+                    todo listo</h2>
+                <p class="mt-4 text-wood-700 text-lg">Los detalles que hacen la diferencia cuando afuera hace frío y
+                    adentro querés estar de maravilla.</p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="flame-kindling" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Calefacción excelente</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Cabañas súper bien calefaccionadas, para
+                        entrar del frío y quedarte cómodo.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="beef" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Quincho con parrilla</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Cubierto y junto a la cocina. Chico, pero la
+                        parrilla tira muy bien.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="bath" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Ropa de cama y toallas</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Juego completo incluido. Traé tu valija y nada
+                        más.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="cooking-pot" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Cocina equipada</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Con los enseres necesarios para cocinar como
+                        en casa.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="sofa" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Living amplio</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Lugar de sobra para estirarse, charlar y mirar
+                        una peli.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="car" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Cochera sin cargo</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Estacionás en el predio, sin dar vueltas
+                        buscando lugar.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="wifi" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Wi-Fi gratis</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Para quedarte conectado si lo necesitás.</p>
+                </div>
+                <div class="reveal bg-cream rounded-2xl p-5 md:p-6 border border-wood-100">
+                    <div class="w-12 h-12 rounded-xl bg-wood-900 text-ember flex items-center justify-center mb-4"><i
+                            data-lucide="key-round" class="w-6 h-6"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wood-900">Ingreso fácil</h3>
+                    <p class="mt-2 text-sm text-wood-700 leading-relaxed">Te pasamos instrucciones de ingreso súper
+                        claras antes de llegar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== UBICACIÓN ========== -->
+    <section id="ubicacion" class="py-20 md:py-28">
+        <div class="max-w-6xl mx-auto px-5">
+            <div
+                class="rounded-[2rem] overflow-hidden bg-wood-900 text-cream grid md:grid-cols-2 shadow-2xl shadow-wood-900/20">
+                <div class="p-8 md:p-12 flex flex-col justify-center reveal">
+                    <p class="text-ember text-sm font-semibold tracking-[.18em] uppercase mb-3">Ubicación</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-semibold leading-tight">Sobre una calle arbolada de
+                        Las Victorias</h2>
+                    <p class="mt-4 text-cream/80 text-lg leading-relaxed">Un rincón tranquilo de Bariloche para
+                        descansar, con los comercios del centro y las playas del Nahuel Huapi a una distancia razonable
+                        en auto.</p>
+                    <div class="mt-7 grid grid-cols-1 gap-3">
+                        <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5">
+                            <i data-lucide="store" class="w-5 h-5 text-ember shrink-0"></i>
+                            <div>
+                                <p class="font-semibold">6 km</p>
+                                <p class="text-sm text-cream/70">de comercios y restaurantes del centro</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5">
+                            <i data-lucide="waves" class="w-5 h-5 text-ember shrink-0"></i>
+                            <div>
+                                <p class="font-semibold">14 km</p>
+                                <p class="text-sm text-cream/70">de Playa Bonita</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5">
+                            <i data-lucide="bus" class="w-5 h-5 text-ember shrink-0"></i>
+                            <div>
+                                <p class="font-semibold">200 m</p>
+                                <p class="text-sm text-cream/70">de la parada de colectivo más cercana (2 cuadras)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAPA GOOGLE MAPS REAL -->
+                <div class="relative min-h-[360px] md:min-h-full w-full h-full bg-wood-800">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6010.6825712391965!2d-71.2487682!3d-41.1270751!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7ce4e130d275%3A0x498c7b03fc240b99!2sLas%20Nubes%20Caba%C3%B1as!5e0!3m2!1sen!2sar!4v1794628155720!5m2!1sen!2sar"
+                        class="w-full h-full min-h-[360px] md:min-h-[480px] border-0"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        title="Ubicación de Las Nubes Cabañas en Google Maps"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALERÍA ========== -->
+    <section class="pb-20 md:pb-28">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="max-w-2xl reveal">
+                <p class="text-forest-700 text-sm font-semibold tracking-[.18em] uppercase mb-3">Galería</p>
+                <h2 class="font-serif text-3xl md:text-5xl font-semibold text-wood-900 leading-tight">Un vistazo al
+                    lugar</h2>
+            </div>
+            <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                <div
+                    class="gallery-item ph rounded-2xl aspect-square md:col-span-2 md:row-span-2 md:aspect-auto md:min-h-[420px] reveal cursor-pointer group"
+                    role="button" tabindex="0" aria-label="Ver foto en tamaño completo">
+                    <img data-img="gal1" alt="Las Nubes Cabañas en invierno con nieve" loading="lazy">
+                    <div class="ph-label"><i data-lucide="image"></i><span>Foto</span></div>
+                    <div class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                        <div class="w-12 h-12 rounded-full bg-cream/95 text-wood-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100 shadow-xl">
+                            <i data-lucide="maximize-2" class="w-5 h-5 text-wood-900"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item ph rounded-2xl aspect-square reveal cursor-pointer group"
+                    role="button" tabindex="0" aria-label="Ver foto en tamaño completo">
+                    <img data-img="gal2" alt="Living comedor con chimenea a leña" loading="lazy">
+                    <div class="ph-label"><i data-lucide="image"></i><span>Foto</span></div>
+                    <div class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full bg-cream/95 text-wood-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100 shadow-xl">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-wood-900"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item ph rounded-2xl aspect-square reveal cursor-pointer group"
+                    role="button" tabindex="0" aria-label="Ver foto en tamaño completo">
+                    <img data-img="gal3" alt="Habitación matrimonial con cama King Size" loading="lazy">
+                    <div class="ph-label"><i data-lucide="image"></i><span>Foto</span></div>
+                    <div class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full bg-cream/95 text-wood-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100 shadow-xl">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-wood-900"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item ph rounded-2xl aspect-square reveal cursor-pointer group"
+                    role="button" tabindex="0" aria-label="Ver foto en tamaño completo">
+                    <img data-img="gal4" alt="Deck exterior con mesa y jardín" loading="lazy">
+                    <div class="ph-label"><i data-lucide="image"></i><span>Foto</span></div>
+                    <div class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full bg-cream/95 text-wood-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100 shadow-xl">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-wood-900"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item ph rounded-2xl aspect-square reveal cursor-pointer group"
+                    role="button" tabindex="0" aria-label="Ver foto en tamaño completo">
+                    <img data-img="gal5" alt="Cabaña Araucaria con estacionamiento privado" loading="lazy">
+                    <div class="ph-label"><i data-lucide="image"></i><span>Foto</span></div>
+                    <div class="absolute inset-0 z-10 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full bg-cream/95 text-wood-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100 shadow-xl">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-wood-900"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OPINIONES ========== -->
+    <section id="opiniones" class="py-20 md:py-28 bg-wood-100/60">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="max-w-2xl reveal">
+                <p class="text-forest-700 text-sm font-semibold tracking-[.18em] uppercase mb-3">Opiniones</p>
+                <h2 class="font-serif text-3xl md:text-5xl font-semibold text-wood-900 leading-tight">Lo cuentan quienes
+                    ya se hospedaron</h2>
+            </div>
+
+            <div class="mt-10 grid lg:grid-cols-5 gap-6 items-start">
+                <!-- Gráfico de calificaciones -->
+                <div
+                    class="reveal lg:col-span-2 bg-white rounded-3xl border border-wood-100 shadow-[0_8px_30px_rgba(62,39,35,.06)] p-6 md:p-8">
+                    <p class="text-xs font-semibold tracking-[.14em] uppercase text-wood-500">Calificaciones en Google
+                    </p>
+                    <div class="mt-4 flex items-center gap-5">
+                        <div>
+                            <p class="font-serif text-6xl font-semibold text-wood-900 leading-none">4,6</p>
+                            <div class="flex gap-0.5 text-ember mt-2">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                    class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                    class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                    class="w-4 h-4 fill-current"></i><i data-lucide="star-half"
+                                    class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-sm text-wood-700 mt-1.5">295 reseñas</p>
+                        </div>
+                        <div class="flex-1 space-y-2.5">
+                            <div class="flex items-center gap-3"><span class="text-sm text-wood-700 w-3">5</span>
+                                <div class="flex-1 h-2.5 rounded-full bg-wood-100 overflow-hidden">
+                                    <div class="bar-fill h-full rounded-full bg-ember" style="--w:100%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3"><span class="text-sm text-wood-700 w-3">4</span>
+                                <div class="flex-1 h-2.5 rounded-full bg-wood-100 overflow-hidden">
+                                    <div class="bar-fill h-full rounded-full bg-ember" style="--w:22%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3"><span class="text-sm text-wood-700 w-3">3</span>
+                                <div class="flex-1 h-2.5 rounded-full bg-wood-100 overflow-hidden">
+                                    <div class="bar-fill h-full rounded-full bg-ember" style="--w:9%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3"><span class="text-sm text-wood-700 w-3">2</span>
+                                <div class="flex-1 h-2.5 rounded-full bg-wood-100 overflow-hidden">
+                                    <div class="bar-fill h-full rounded-full bg-ember" style="--w:3%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3"><span class="text-sm text-wood-700 w-3">1</span>
+                                <div class="flex-1 h-2.5 rounded-full bg-wood-100 overflow-hidden">
+                                    <div class="bar-fill h-full rounded-full bg-ember" style="--w:3%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-5 border-t border-wood-100 text-sm text-wood-700 leading-relaxed">
+                        La inmensa mayoría de los huéspedes los califica con 5 estrellas.
+                    </div>
+                </div>
+
+                <!-- Reseñas reales -->
+                <div class="lg:col-span-3 grid sm:grid-cols-2 gap-4">
+                    <figure class="reveal bg-white rounded-2xl p-6 border border-wood-100 flex flex-col">
+                        <div class="flex gap-0.5 text-ember mb-3"><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <blockquote class="text-wood-900 leading-relaxed flex-1">“Excelente relación precio / calidad.
+                            En toda mi vida jamás había recibido instrucciones de ingreso tan claras como las que me
+                            pasaron aquí.”</blockquote>
+                        <figcaption class="mt-4 flex items-center justify-between text-sm">
+                            <span class="font-semibold text-wood-900">María Florencia C.</span>
+                            <span class="text-wood-500">Google</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="reveal bg-white rounded-2xl p-6 border border-wood-100 flex flex-col">
+                        <div class="flex gap-0.5 text-ember mb-3"><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <blockquote class="text-wood-900 leading-relaxed flex-1">“Hermosa la cabaña Araucaria y a muy
+                            buen precio. Living muy amplio y quincho cubierto muy acogedor para sobremesas largas.”
+                        </blockquote>
+                        <figcaption class="mt-4 flex items-center justify-between text-sm">
+                            <span class="font-semibold text-wood-900">Horacio L.</span>
+                            <span class="text-wood-500">Google · Local Guide</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="reveal bg-white rounded-2xl p-6 border border-wood-100 flex flex-col">
+                        <div class="flex gap-0.5 text-ember mb-3"><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <blockquote class="text-wood-900 leading-relaxed flex-1">“Cómodas y confortables, bien equipadas
+                            en cuanto a ropa de cama, toallas y enseres de cocina. Tienen el quincho cubierto junto a la
+                            cocina. Es pequeño pero la parrilla tira muy bien.”</blockquote>
+                        <figcaption class="mt-4 flex items-center justify-between text-sm">
+                            <span class="font-semibold text-wood-900">Celia H.</span>
+                            <span class="text-wood-500">Google · Local Guide</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="reveal bg-white rounded-2xl p-6 border border-wood-100 flex flex-col">
+                        <div class="flex gap-0.5 text-ember mb-3"><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star"
+                                class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <blockquote class="text-wood-900 leading-relaxed flex-1">“Las cabañas son hermosas! Super bien
+                            calefaccionadas, con cochera. La limpieza es excelente. Las camas son super cómodas. Los
+                            dueños son lo mejor del lugar!”</blockquote>
+                        <figcaption class="mt-4 flex items-center justify-between text-sm">
+                            <span class="font-semibold text-wood-900">mica2626</span>
+                            <span class="text-wood-500">Tripadvisor</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA FINAL ========== -->
+    <section class="px-5 py-20 md:py-28">
+        <div
+            class="max-w-4xl mx-auto relative rounded-[2rem] overflow-hidden bg-forest-900 text-center px-6 py-14 md:py-20 grain">
+            <div class="relative z-10 reveal">
+                <h2 class="font-serif text-3xl md:text-5xl font-semibold text-cream leading-tight">¿Armamos tu escapada
+                    a Bariloche?</h2>
+                <p class="mt-4 text-cream/80 text-lg max-w-xl mx-auto">Escribinos con tus fechas y cuántos van, y te
+                    contamos qué cabaña tenemos disponible.</p>
+                <a href="#"
+                    onclick="event.preventDefault(); alert('Versión de demostración: en la web oficial este botón abrirá un chat directo a su WhatsApp con el mensaje de consulta prearmado.');"
+                    class="mt-8 inline-flex items-center justify-center gap-2 bg-ember hover:bg-[#b46a30] text-white font-semibold px-8 py-4 rounded-full transition shadow-lg shadow-black/20">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Reservar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-wood-900 text-cream/80">
+        <div
+            class="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-center md:text-left">
+            <div class="flex items-center gap-2 text-cream"><i data-lucide="mountain-snow" class="w-5 h-5"></i><span
+                    class="font-serif text-lg font-semibold">Las Nubes Cabañas</span></div>
+            <p>Barrio Las Victorias · San Carlos de Bariloche, Río Negro</p>
+            <p class="text-cream/50">© 2026 Las Nubes Cabañas</p>
+        </div>
+    </footer>
+
+    <!-- ========== BOTÓN FLOTANTE WHATSAPP ========== -->
+    <a href="#"
+        onclick="event.preventDefault(); alert('Versión de demostración: en la web oficial este botón abrirá un chat directo a su WhatsApp con el mensaje de consulta prearmado.');"
+        aria-label="Consultar por WhatsApp"
+        class="wa-pulse fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#1ebe5b] text-white flex items-center justify-center shadow-xl transition">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <!-- ========== LIGHTBOX MODAL ========== -->
+    <div id="lightboxModal" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 transition-all duration-300" role="dialog" aria-modal="true" aria-label="Visor de fotos">
+        <!-- Botón cerrar -->
+        <button id="lbClose" aria-label="Cerrar visor" class="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition focus:outline-none">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Botón anterior -->
+        <button id="lbPrev" aria-label="Foto anterior" class="absolute left-3 sm:left-6 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition shadow-lg focus:outline-none">
+            <i data-lucide="chevron-left" class="w-7 h-7"></i>
+        </button>
+
+        <!-- Botón siguiente -->
+        <button id="lbNext" aria-label="Foto siguiente" class="absolute right-3 sm:right-6 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition shadow-lg focus:outline-none">
+            <i data-lucide="chevron-right" class="w-7 h-7"></i>
+        </button>
+
+        <!-- Contenedor de la foto -->
+        <div id="lbContent" class="relative max-w-5xl max-h-[85vh] w-full flex flex-col items-center justify-center px-4">
+            <img id="lbImg" src="" alt="" class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl transition-opacity duration-200">
+            <p id="lbCaption" class="mt-4 text-cream/95 text-center text-sm sm:text-base font-medium drop-shadow"></p>
+            <span id="lbCounter" class="mt-1 text-xs text-cream/60"></span>
+        </div>
+    </div>
+
+    <script>
+        /* ====== MAPA ======
+           Link directo a Google Maps del alojamiento. */
+        const MAPS_URL = 'https://www.google.com/maps/place/Las+Nubes+Caba%C3%B1as/@-41.1270751,-71.2487682,15z/data=!4m6!3m5!1s0x961a7ce4e130d275:0x498c7b03fc240b99!8m2!3d-41.1270751!4d-71.2487682!16s%2Fg%2F11b6d19_2f?entry=ttu';
+
+        /* ====== IMÁGENES ======
+           Imágenes reales de la carpeta del proyecto. */
+        const IMAGES = {
+            hero: 'Captura de pantalla_20261114_003122.png',
+            araucaria: 'Captura de pantalla_20261114_003131.png',
+            arrayan: 'Captura de pantalla_20261114_003150.png',
+            gal1: 'Captura de pantalla_20261114_003205.png',
+            gal2: 'Captura de pantalla_20261114_003146.png',
+            gal3: 'Captura de pantalla_20261114_003142.png',
+            gal4: 'Captura de pantalla_20261114_003150.png',
+            gal5: 'Captura de pantalla_20261114_003131.png'
+        };
+
+        var mapLink = document.getElementById('mapLink');
+        if (mapLink) {
+            if (MAPS_URL) { mapLink.href = MAPS_URL; mapLink.target = '_blank'; mapLink.rel = 'noopener'; }
+            else { mapLink.addEventListener('click', function (e) { e.preventDefault(); }); }
+        }
+
+        document.querySelectorAll('img[data-img]').forEach(function (img) {
+            var url = IMAGES[img.dataset.img];
+            if (!url) return;
+            function markLoaded() {
+                img.classList.add('loaded');
+                var label = img.parentElement ? img.parentElement.querySelector('.ph-label') : null;
+                if (label) label.style.display = 'none';
+            }
+            img.onload = markLoaded;
+            img.onerror = function () { img.style.display = 'none'; };
+            img.src = url;
+            if (img.complete && img.naturalWidth !== 0) {
+                markLoaded();
+            }
+        });
+
+        // Lightbox de galería
+        var galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        var lbModal = document.getElementById('lightboxModal');
+        var lbImg = document.getElementById('lbImg');
+        var lbCaption = document.getElementById('lbCaption');
+        var lbCounter = document.getElementById('lbCounter');
+        var lbClose = document.getElementById('lbClose');
+        var lbPrev = document.getElementById('lbPrev');
+        var lbNext = document.getElementById('lbNext');
+        var currentLbIndex = 0;
+
+        function showLightbox(index) {
+            currentLbIndex = index;
+            var item = galleryItems[currentLbIndex];
+            if (!item) return;
+            var img = item.querySelector('img');
+            if (!img) return;
+            lbImg.style.opacity = '0';
+            lbImg.src = img.src;
+            lbImg.alt = img.alt || '';
+            lbCaption.textContent = img.alt || 'Las Nubes Cabañas';
+            lbCounter.textContent = (currentLbIndex + 1) + ' / ' + galleryItems.length;
+            setTimeout(function () { lbImg.style.opacity = '1'; }, 50);
+            lbModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function hideLightbox() {
+            lbModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        galleryItems.forEach(function (el, idx) {
+            el.addEventListener('click', function () { showLightbox(idx); });
+            el.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    showLightbox(idx);
+                }
+            });
+        });
+
+        lbClose.addEventListener('click', hideLightbox);
+        lbModal.addEventListener('click', function (e) {
+            if (e.target === lbModal || e.target.id === 'lbContent') {
+                hideLightbox();
+            }
+        });
+
+        lbPrev.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var prevIndex = (currentLbIndex - 1 + galleryItems.length) % galleryItems.length;
+            showLightbox(prevIndex);
+        });
+
+        lbNext.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var nextIndex = (currentLbIndex + 1) % galleryItems.length;
+            showLightbox(nextIndex);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (lbModal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') hideLightbox();
+            else if (e.key === 'ArrowLeft') {
+                var prevIndex = (currentLbIndex - 1 + galleryItems.length) % galleryItems.length;
+                showLightbox(prevIndex);
+            } else if (e.key === 'ArrowRight') {
+                var nextIndex = (currentLbIndex + 1) % galleryItems.length;
+                showLightbox(nextIndex);
+            }
+        });
+
+        lucide.createIcons();
+
+        var nav = document.getElementById('navbar');
+        function onScroll() {
+            if (window.scrollY > 40) {
+                nav.classList.add('bg-cream/95', 'shadow-md');
+                nav.classList.remove('bg-cream/80');
+            } else {
+                nav.classList.add('bg-cream/80');
+                nav.classList.remove('bg-cream/95', 'shadow-md');
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        var menu = document.getElementById('mobileMenu');
+        document.getElementById('menuBtn').addEventListener('click', function () { menu.classList.toggle('hidden'); });
+        document.querySelectorAll('.mobile-link').forEach(function (l) {
+            l.addEventListener('click', function () { menu.classList.add('hidden'); });
+        });
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    </script>
+</body>
+
+</html>
